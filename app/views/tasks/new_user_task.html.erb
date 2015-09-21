@@ -1,0 +1,48 @@
+<%= form_for @task, :url => user_create_task_tasks_path, :html => {:multipart => true} do |f| %>
+    <table>
+      <tr>
+        <td>
+          <div class="field">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </div>
+
+          <div class="field">
+            <%= f.label :Image %> 
+            <%= f.file_field :image, placeholder: "(jpg, gif, png)" %>
+          </div>
+          <br/>
+          <div class="field">
+            <%= f.label :task_type %>
+            <%= f.select :task_type, @task.task_types_list %>
+          </div>
+
+          <div class="field">
+            <%= f.label :status %>
+            <%= f.select :status, @task.task_status_list %>
+          </div>
+        </td>
+        </tr>
+        <tr>
+        <td>
+          <div class="field">
+            <%= f.label :Assigned_to %>
+            <%= f.select :developer_id, options_for_select(@developers) %>
+          </div>
+          <div class="field">
+            <%= f.label :project %>
+            <%= f.select :project_id, options_for_select(@projects) %>
+          </div class="field">
+          <div>
+            <%= f.label :description %>  
+            <%= f.text_area :description, placeholder: "Write description here ...",rows: 5,style: "width:363px;" %>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+    <p>
+      <%= f.submit :class => 'btn btn-primary'%>
+      <%= link_to 'Back', root_url, :class => 'btn' %>
+    </p>
+<% end %>
